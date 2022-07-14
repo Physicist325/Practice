@@ -66,7 +66,7 @@ namespace B2a
 
     nistManager->FindOrBuildMaterial("G4_Pb");
     nistManager->FindOrBuildMaterial("G4_Ar");
-    nistManager->FindOrBuildMaterial("G4_CO2");
+    nistManager->FindOrBuildMaterial("G4_CARBON_DIOXIDE");
     
 
 
@@ -97,7 +97,7 @@ namespace B2a
     G4Material *air = G4Material::GetMaterial("G4_AIR");
     G4Material *Pb = G4Material::GetMaterial("G4_Pb");
     G4Material *Ar = G4Material::GetMaterial("G4_Ar");
-    G4Material *CO2 = G4Material::GetMaterial("G4_CO2");
+    G4Material *CO2 = G4Material::GetMaterial("G4_CARBON_DIOXIDE");
     G4Material* straw_gas = new G4Material("StrawGas", gas_density, nGasComp);
     straw_gas->AddMaterial(Ar, 70.*perCent);
 	  straw_gas->AddMaterial(CO2, 30.*perCent);
