@@ -130,7 +130,7 @@ namespace B2a
 
 
 
-    double TestboxLenth = 25;
+    double TestboxLenth = 110;
     double TestboxWidth = 50;
 
     G4Box *testboxS = new G4Box("testbox", TestboxLenth, TestboxWidth, TestboxWidth);
@@ -150,8 +150,6 @@ namespace B2a
         tubeS[i] = new G4Tubs("tube", 0., TubeRad, TestboxWidth, 0. * deg, 360. * deg);
         tubeLV[i] = new G4LogicalVolume (tubeS[i], straw_gas, "tube");
         new G4PVPlacement (0, G4ThreeVector(-15 - TestboxLenth, 2 * TubeRad * i - TubePlaneWidth, 0), tubeLV[i], "tube", worldLV, false, 0, false);
-            SetSensitiveDetector("tube", aTrackerSD, true);
-
       };
 
     G4Tubs *tube1S[n];
@@ -161,11 +159,10 @@ namespace B2a
         tube1S[i] = new G4Tubs("tube1", 0., TubeRad, TestboxWidth, 0. * deg, 360. * deg);
         tube1LV[i] = new G4LogicalVolume (tube1S[i], straw_gas, "tube1");
         new G4PVPlacement (0, G4ThreeVector(15 +  TestboxLenth, 2 * TubeRad * i - TubePlaneWidth, 0), tube1LV[i], "tube1", worldLV, false, 0, false);
-          SetSensitiveDetector("tube1", aTrackerSD, true);
-
       };
 
-
+    SetSensitiveDetector("tube", aTrackerSD, true);
+    SetSensitiveDetector("tube1", aTrackerSD, true);
   
   //  G4VisAttributes *boxVisAtt = new G4VisAttributes(G4Colour(1.0, 1.0, 1.0));
 

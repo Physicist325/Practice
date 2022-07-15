@@ -64,6 +64,8 @@ class TrackerSD : public G4VSensitiveDetector
   TH2F *h2d;
   TH2F *h2d1;
   TH2F *h2d2;
+  TH2F *h2d1C;
+  TH2F *h2d2C;
 };
 
 }

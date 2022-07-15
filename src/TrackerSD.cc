@@ -49,6 +49,8 @@ TrackerSD::TrackerSD(const G4String& name)
   h2d = new TH2F("h2d", "histogram", 100, -50, 50, 100, -50, 50);
   h2d1 = new TH2F("h2d1", "histogram of 1-st straw", 100, -50, 50, 100, -50, 50);
   h2d2 = new TH2F("h2d2", "histogram of 2-nd straw", 100, -50, 50, 100, -50, 50);
+  h2d1C = new TH2F("h2d1C", "histogram of 1-st straw charged", 100, -50, 50, 100, -50, 50);
+  h2d2C = new TH2F("h2d2C", "histogram of 2-nd straw charged", 100, -50, 50, 100, -50, 50);
 
 }
 
@@ -61,6 +63,8 @@ TrackerSD::~TrackerSD()
  h2d -> Write();
  h2d1 -> Write();
  h2d2 -> Write();
+ h2d1C -> Write();
+ h2d2C -> Write();
  f->Close();
 
 
@@ -83,10 +87,32 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,
  G4double edep = aStep->GetTotalEnergyDeposit();
 
  
-G4ThreeVector pos  = aStep->GetPostStepPoint()->GetPosition();
+  G4ThreeVector pos  = aStep->GetPostStepPoint()->GetPosition();
   G4cout<<pos[0]<<"  "<<pos[1]<<" "<<pos[2]<<G4endl;
 
-  if (abs(pos[0]+40)<5)
+  G4double charge  = aStep->GetPostStepPoint()->GetCharge();
+  
+  if (charge != 0)
+  {
+    if (pos[0]<0)
+    {
+      h2d1C -> Fill(pos[1], pos[2]);
+    }
+    else
+    {
+      h2d2C -> Fill(pos[1], pos[2]);
+    }
+  }
+
+  if (pos[0]<0)
+  {
+    h2d1 -> Fill(pos[1], pos[2]);
+  }
+  else
+  {
+    h2d2 -> Fill(pos[1], pos[2]);
+  }
+  /*if (abs(pos[0]+40)<5)
   {
     h2d1 -> Fill(pos[1], pos[2]);
   }
@@ -95,6 +121,7 @@ G4ThreeVector pos  = aStep->GetPostStepPoint()->GetPosition();
   {
     h2d2 -> Fill(pos[1], pos[2]);
   }
+  */
 
   h2d->Fill(pos[1],pos[2]);
 

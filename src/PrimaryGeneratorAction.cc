@@ -55,7 +55,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   // default particle kinematic
 
   G4ParticleDefinition* particleDefinition
-    = G4ParticleTable::GetParticleTable()->FindParticle("e-");
+    = G4ParticleTable::GetParticleTable()->FindParticle("pi+");
 
   fParticleGun->SetParticleDefinition(particleDefinition);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(1.,0.,0.));
